@@ -7,9 +7,11 @@ makedocs(;
     modules=[PlasticityBase],
     authors="Joby M. Anthony III",
     sitename="PlasticityBase.jl",
+    doctest=false,
     format=Documenter.HTML(;
+        prettyurls=get(ENV, "CI", "false") == "true",
         canonical="https://jmanthony3.github.io/PlasticityBase.jl",
-        edit_link="master",
+        edit_link="main",
         assets=String[],
     ),
     pages=[
@@ -19,5 +21,5 @@ makedocs(;
 
 deploydocs(;
     repo="github.com/jmanthony3/PlasticityBase.jl",
-    devbranch="master",
+    devbranch="main",
 )
