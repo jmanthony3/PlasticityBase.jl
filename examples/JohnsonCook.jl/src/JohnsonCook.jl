@@ -46,7 +46,7 @@ function Base.copyto!(reference::JCCurrentConfiguration, history::JCConfiguratio
     return nothing
 end
 
-function record!(history::T, i::Integer, current::T) where {T<:JCConfigurationHistory}
+function record!(history::JCConfigurationHistory, i::Integer, current::JCCurrentConfiguration)
     history.σ[i] = current.σ
     history.ϵ[i] = current.ϵ
     return nothing
