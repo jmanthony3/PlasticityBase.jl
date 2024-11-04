@@ -52,7 +52,7 @@ function record!(history::JCConfigurationHistory, i::Integer, current::JCCurrent
     return nothing
 end
 
-function referenceconfiguration(::Type{JC}, jc::JCStrainControl)::Tuple{JCCurrentConfiguration, JCCurrentConfiguration, JCConfigurationHistory}
+function PlasticityBase.referenceconfiguration(::Type{JC}, jc::JCStrainControl)::Tuple{JCCurrentConfiguration, JCCurrentConfiguration, JCConfigurationHistory}
     θ       = jc.θ
     ϵ_dot   = jc.ϵ_dot
     ϵₙ      = jc.ϵₙ
