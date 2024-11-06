@@ -2,7 +2,7 @@ using PlasticityBase
 
 abstract type JC <: Plasticity end
 
-struct JCStrainControl{T<:AbstractFloat} <: JC
+struct JCStrainControl{T<:AbstractFloat}
     θ       ::T
     ϵ_dot   ::T
     ϵₙ      ::T
@@ -10,7 +10,7 @@ struct JCStrainControl{T<:AbstractFloat} <: JC
     params  ::Dict{String, T}
 end
 
-mutable struct JCCurrentConfiguration{T<:AbstractFloat} <: JC
+mutable struct JCCurrentConfiguration{T<:AbstractFloat}
     N       ::Integer
     θ       ::T
     ϵ       ::T
@@ -29,7 +29,7 @@ mutable struct JCCurrentConfiguration{T<:AbstractFloat} <: JC
     σ       ::T
 end
 
-mutable struct JCConfigurationHistory{T<:AbstractFloat} <: JC
+mutable struct JCConfigurationHistory{T<:AbstractFloat}
     σ::Vector{T}
     ϵ::Vector{T}
 end
@@ -46,7 +46,7 @@ function Base.copyto!(reference::JCCurrentConfiguration, history::JCConfiguratio
     return nothing
 end
 
-function record!(history::JCConfigurationHistory, i::Integer, current::JCCurrentConfiguration)
+function PlasticityBase.record!(history::JCConfigurationHistory, i::Integer, current::JCCurrentConfiguration)
     history.σ[i] = current.σ
     history.ϵ[i] = current.ϵ
     return nothing
@@ -87,7 +87,7 @@ function johnsoncookstress(A, B, ϵ, n, C, ϵ⁺, θ⁺, m)::AbstractFloat
     return ( A + B * ϵ^n ) * ( 1. + C * log(ϵ⁺) ) * ( 1. - θ⁺^m )
 end
 
-function solve!(jc::JCCurrentConfiguration{<:AbstractFloat},
+function PlasticityBase.solve!(jc::JCCurrentConfiguration{<:AbstractFloat},
         history::JCConfigurationHistory)
     A   = jc.A
     B   = jc.B
