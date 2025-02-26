@@ -3,7 +3,11 @@ uuid = "4061fbf7-9440-4a1d-9a5e-b99f9d96b3d3"
 authors = ["Joby M. Anthony III"]
 version = "0.0.0-dev"
 
+[deps]
+OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+
 [compat]
+OrderedCollections = "1.8.0"
 julia = "1.11"
 
 [extras]

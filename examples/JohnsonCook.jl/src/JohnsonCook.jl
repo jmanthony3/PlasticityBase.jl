@@ -1,4 +1,5 @@
 using PlasticityBase
+using OrderedCollections
 
 abstract type JC <: Plasticity end
 
@@ -7,7 +8,7 @@ struct JCStrainControl{T<:AbstractFloat}
     ϵ_dot   ::T
     ϵₙ      ::T
     N       ::Integer
-    params  ::Dict{String, T}
+    params  ::OrderedDict{String, T}
 end
 
 mutable struct JCCurrentConfiguration{T<:AbstractFloat}
